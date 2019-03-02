@@ -1,0 +1,36 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>File Upload</title>
+        <script>
+            function validate(files){
+                file = files[0];
+                if(!file) return;
+                url= URL.createObjectURL(file);
+                image = new Image();
+                image.onload = function (){
+                    var width = this.naturalWidth;
+                    if(width<600)
+                    alert("Please upload another iamge with width greater than 600");
+                    else if(width == 600)
+                    alert("image is of correct width");
+                    else
+                    alert("Please Crop image to width 600");
+                }
+                image.src=url;               
+            }
+        </script>
+    </head>
+    <body>
+        <h3 style="text-align:center;">Image Upload</h3>
+        <input 
+        type="file" 
+        id = "img" 
+        onchange=validate(this.files)
+        style="position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%)">
+        <div style="text-align:center;font-weight: bold;">Upload a pic with width 600px. </div>
+    </body>
+</html>
